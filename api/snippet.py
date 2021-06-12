@@ -1,5 +1,6 @@
 import abc
-from api.exceptions import MissingFieldException
+import yaml
+from api.exceptions import MissingFieldException, CouldNotLoadSnippetException
 
 
 class Snippet:
@@ -21,7 +22,7 @@ class Snippet:
                 return MissingFieldException(field)
         return True
 
-    def prompt(self):
+    def print_prompt(self):
         print(self.prompt)
 
     @abc.abstractmethod
@@ -46,3 +47,30 @@ class Snippet:
                     pass
             else:
                 continue
+
+    @classmethod
+    def load(cls, file):
+        yaml_file = yaml.safe_load(file)
+        snippets = []
+
+        for idx, snip in enumerate(yaml_file):
+            snip = dict((k.lower(), v) for k, v in snip.items())
+            try:
+                snippet = cls(**snip)
+                snippets.append(snippet)
+            except Exception as e:
+                raise CouldNotLoadSnippetException(
+                    "Could not load Question {idx} in {file}: {exception}".format(
+                        idx=idx, file=file.name, exception=e
+                    )
+                )
+        return snippets
+
+
+class NonConsoleSnippet(Snippet):
+    __metaclass__ = abc.ABCMeta
+
+    def __init__(self, category, prompt, **kwargs):
+        self.category = category
+        self.prompt = prompt
+        self.__dict__.update(kwargs)

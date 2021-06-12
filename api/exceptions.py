@@ -3,3 +3,7 @@ class MissingFieldException(Exception):
         self.field = field
         self.message = "{field} not found.".format(field=field)
         super().__init__(self.message)
+
+
+class CouldNotLoadSnippetException(Exception):
+    pass
