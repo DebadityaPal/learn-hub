@@ -1,7 +1,7 @@
 from api.snippet import NonConsoleSnippet
 
 
-class TextSnippet(NonConsoleSnippet):
+class textSnippet(NonConsoleSnippet):
 
     _requiredFields_ = []
 
@@ -10,4 +10,4 @@ class TextSnippet(NonConsoleSnippet):
         self.get_response()
 
     def get_response(self, data={}):
-        response = input("...")
+        input("...")

@@ -8,6 +8,7 @@ class Snippet:
     _requiredFields_ = None
 
     def __init__(self, category, prompt, **kwargs):
+        import api.snippets
         # TODO: Create Subclass Object
 
         self.verify(self._requiredFields_)
