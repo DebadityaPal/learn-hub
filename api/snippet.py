@@ -1,6 +1,10 @@
 import abc
 import yaml
-from api.exceptions import MissingFieldException, CouldNotLoadSnippetException
+from api.exceptions import (
+    MissingFieldException,
+    CouldNotLoadSnippetException,
+    UnknownSnippetCategoryException,
+)
 
 
 class Snippet:
@@ -9,8 +13,15 @@ class Snippet:
 
     def __init__(self, category, prompt, **kwargs):
         import api.snippets
-        # TODO: Create Subclass Object
 
+        name = (category + "snippet").lower()
+        if name in api.snippets.types:
+            snip = api.snippets.types[name](category, prompt, **kwargs)
+        else:
+            raise UnknownSnippetCategoryException(name)
+
+        self.__dict__ = snip.__dict__
+        self.__class__ = snip.__class__
         self.verify(self._requiredFields_)
 
     def verify(self, fields):
