@@ -1,3 +1,6 @@
+import api.snippet
+
+
 class Chapter:
     def __init__(self, snippets):
         self.snippets = snippets
@@ -5,7 +8,6 @@ class Chapter:
     def execute(self):
         data = {}
         for snippet in self.snippets:
-            # TODO: Create Class for snippets
             submission = snippet.execute(data=data)
             if type(submission) == dict:
                 data.update(submission)
@@ -13,10 +15,13 @@ class Chapter:
         return data
 
     def verify(self):
-        # for idx, snippet in enumerate(self.snippets):
-        # TODO: Test for snippets
+        for idx, snippet in enumerate(self.snippets):
+            if hasattr(snippet, "verify"):
+                snippet.verify()
+            else:
+                print("Warning: No verification Test detected.")
 
     @classmethod
-    def load(cls, path):
-        # TODO: Load yaml file
-        return
+    def load(cls, file):
+        snippets = api.snippet.Snippet.load(file)
+        return cls(snippets)

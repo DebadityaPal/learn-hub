@@ -11,3 +11,11 @@ class textSnippet(NonConsoleSnippet):
 
     def get_response(self, data={}):
         input("...")
+
+    def verify(self):
+        if type(self.output) != str:
+            print(
+                "Output is of type: {type}, expected str.".format(
+                    type=type(self.output)
+                )
+            )
