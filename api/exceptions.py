@@ -14,3 +14,7 @@ class UnknownSnippetCategoryException(Exception):
         self.name = name
         self.message = "Snippet of Category:{name} not found.".format(name=self.name)
         super().__init__(self.message)
+
+
+class NoSuchChapterException(Exception):
+    pass

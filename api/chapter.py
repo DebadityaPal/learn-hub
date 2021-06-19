@@ -19,7 +19,11 @@ class Chapter:
             if hasattr(snippet, "verify"):
                 snippet.verify()
             else:
-                print("Warning: No verification Test detected.")
+                print(
+                    "Warning: No verification Test detected. (Snippet {idx})".format(
+                        idx=idx
+                    )
+                )
 
     @classmethod
     def load(cls, file):
