@@ -1,7 +1,8 @@
 import os
-from api.exceptions import NoSuchChapterException
+from api.exceptions import NoSuchChapterException, NoSuchCourseException
 import unicodedata
 import re
+import yaml
 import api.chapter
 
 
@@ -25,7 +26,7 @@ class Course:
 
     def contents(self):
         for idx, chapter in enumerate(self.chapters):
-            print("{idx} - {chapter}".format(idx=idx, chapter=chapter))
+            print("{idx} - {chapter}".format(idx=idx + 1, chapter=chapter))
 
     def verify(self):
         for field in ["course", "chapters", "author", "description", "organization"]:
@@ -58,7 +59,7 @@ class Course:
 
     def serve_chapter(self, chapter_id):
         chapter = self.load_chapter(chapter_id)
-        chapter.execute(
+        chapter.serve(
             initial_data={
                 "path": self.path,
             }
@@ -99,3 +100,13 @@ class Course:
         )
         text = re.sub(r"[^\w\s-]", "", text.lower())
         return re.sub(r"[-\s]+", "-", text).strip("-_")
+
+    @classmethod
+    def load(cls, path):
+        with open(os.path.join(path, "course.yaml"), "r") as f:
+            yaml_file = yaml.safe_load(f)
+            if len(yaml_file) < 1:
+                raise NoSuchCourseException()
+            kwargs_dict = dict((k.lower(), v) for k, v in yaml_file[0].items())
+            course = cls(path=path, **kwargs_dict)
+        return course

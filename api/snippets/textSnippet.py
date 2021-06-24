@@ -5,7 +5,7 @@ class textSnippet(NonConsoleSnippet):
 
     _requiredFields_ = []
 
-    def execute(self, data={}):
+    def serve(self, data={}):
         self.print_prompt()
         self.get_response()
 

@@ -18,3 +18,7 @@ class UnknownSnippetCategoryException(Exception):
 
 class NoSuchChapterException(Exception):
     pass
+
+
+class NoSuchCourseException(Exception):
+    pass

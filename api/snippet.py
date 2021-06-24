@@ -22,9 +22,9 @@ class Snippet:
 
         self.__dict__ = snip.__dict__
         self.__class__ = snip.__class__
-        self.verify(self._requiredFields_)
+        self.check_required(self._requiredFields_)
 
-    def verify(self, fields):
+    def check_required(self, fields):
         if not fields:
             return True
         elif type(fields) != list:
@@ -45,7 +45,7 @@ class Snippet:
     def test_response(self, data={}):
         pass
 
-    def execute(self, data={}):
+    def serve(self, data={}):
         self.prompt()
         while True:
             response = self.get_response(data=data)
@@ -72,7 +72,7 @@ class Snippet:
                 snippets.append(snippet)
             except Exception as e:
                 raise CouldNotLoadSnippetException(
-                    "Could not load Question {idx} in {file}: {exception}".format(
+                    "Could not load Snippet {idx} in {file}: {exception}".format(
                         idx=idx, file=file.name, exception=e
                     )
                 )

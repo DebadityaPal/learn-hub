@@ -5,10 +5,10 @@ class Chapter:
     def __init__(self, snippets):
         self.snippets = snippets
 
-    def execute(self):
-        data = {}
+    def serve(self, initial_data={}):
+        data = initial_data.copy()
         for snippet in self.snippets:
-            submission = snippet.execute(data=data)
+            submission = snippet.serve(data=data)
             if type(submission) == dict:
                 data.update(submission)
 
