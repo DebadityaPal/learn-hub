@@ -9,7 +9,7 @@ class Course:
     def __init__(self, author, course, chapters, path, description=None):
         self.author = author
         self.course = course
-        self.chapters = chapters
+        self.chapters = chapters.split(";")
         self.path = path
         self.description = description
 
@@ -28,24 +28,18 @@ class Course:
             print("{idx} - {chapter}".format(idx=idx, chapter=chapter))
 
     def verify(self):
-        for field in [
-            "course",
-            "chapters",
-            "author",
-            "description",
-            "organization",
-            "version",
-        ]:
+        for field in ["course", "chapters", "author", "description", "organization"]:
             if not hasattr(self, field):
                 print("course.yaml has no '{field}' attribute".format(field=field))
 
-        for idx, chapter in enumerate(self.chapters):
+        for idx in range(1, len(self.chapters) + 1):
+            chapter = self.load_chapter(idx)
             if hasattr(chapter, "verify"):
                 chapter.verify()
             else:
                 print(
-                    "Warning: No verification test detected. (Chapter {idx}".format(
-                        idx=idx
+                    "Warning: No verification test detected. (Chapter {id}".format(
+                        id=idx + 1
                     )
                 )
 
@@ -64,7 +58,7 @@ class Course:
 
     def serve_chapter(self, chapter_id):
         chapter = self.load_chapter(chapter_id)
-        data = chapter.execute(
+        chapter.execute(
             initial_data={
                 "path": self.path,
             }
