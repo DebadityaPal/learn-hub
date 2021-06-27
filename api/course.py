@@ -7,14 +7,41 @@ import api.chapter
 
 
 class Course:
-    def __init__(self, author, course, chapters, path, description=None):
+    def __init__(
+        self, author, course, chapters, path, description=None, organization=None
+    ):
+        """Creates a new Course object, that parses details from a `course.yaml` file.
+
+        Parameters
+        ----------
+        author: str
+            The name of the author(s) who created the course.
+        course: str
+            The name of the course, it should ideally be descriptive. (ex. "Hub Datasets")
+        chapters: str
+            The names of the chapters separated by semi-colons (;), the delimiter is important.
+        path: str
+            The directory path where the course.yaml file is located.
+        description: str, optional
+            A  short and precise description of the course.
+        organization: str, optional
+            The organization the author belongs to. Could be `None` if no affiliation is to be shown.
+        """
         self.author = author
         self.course = course
         self.chapters = chapters.split(";")
         self.path = path
         self.description = description
+        self.organization = organization
+        self.verify()
 
     def describe(self):
+        """
+        Prints the
+        - Name of the Course
+        - Name of the Author(s)
+        - Description of the Course (if available)
+        """
         if self.description:
             print(
                 "{course} by {author}: {description}".format(
@@ -25,11 +52,17 @@ class Course:
             print("{course} by {author}".format(course=self.course, author=self.author))
 
     def contents(self):
+        """Lists the chapters in the course in an indexed manner."""
         for idx, chapter in enumerate(self.chapters):
             print("{idx} - {chapter}".format(idx=idx + 1, chapter=chapter))
 
     def verify(self):
-        for field in ["course", "chapters", "author", "description", "organization"]:
+        """
+        Checks if the Course has atleast some value for the essential fields.
+        Then checks if each Chapter has a verification test,
+        if yes, then the test is carried out.
+        """
+        for field in ["course", "chapters", "author"]:
             if not hasattr(self, field):
                 print("course.yaml has no '{field}' attribute".format(field=field))
 
@@ -45,6 +78,7 @@ class Course:
                 )
 
     def serve(self):
+        """Gives the user the contents of the course and asks the user to select a chapteṛ."""
         while True:
             self.contents()
             try:
@@ -58,6 +92,14 @@ class Course:
                 break
 
     def serve_chapter(self, chapter_id):
+        """
+        Takes the user's chapter selection and loads the chapter into memory. Then proceeds to serve the chapter.
+
+        Parameters
+        ----------
+        chapter_id: int
+            The index of the chapter selected by the user (Indexes starting from 1).
+        """
         chapter = self.load_chapter(chapter_id)
         chapter.serve(
             initial_data={
@@ -67,6 +109,15 @@ class Course:
         print("End Of Chapter! See you soon.")
 
     def load_chapter(self, chapter_id):
+        """
+        Takes the user's chapter selection and verifies if it is a proper selection.
+        Then loads the `chapter.yaml` file into memory and return the Chapter object.
+
+        Parameter
+        ---------
+        chapter_id: int
+            The index of the chapter selected by the user (Indexes starting from 1).
+        """
         name = ""
         try:
             chapter_id = int(chapter_id)
@@ -92,6 +143,15 @@ class Course:
         return chapter
 
     def slugify(self, text):
+        """
+        Converts normal text to file name approved slugs, by removing forbidden characters and
+        replacing spaces with "-".
+
+        Parameter
+        ---------
+        text: str
+            The normal text that needs to be converted into a slug.
+        """
         text = str(text)
         text = (
             unicodedata.normalize("NFKD", text)
@@ -103,6 +163,15 @@ class Course:
 
     @classmethod
     def load(cls, path):
+        """
+        A class method responsible for loading the Course from the `course.yaml`
+        file into an object of the Class.
+
+        Parameters
+        ----------
+        path: str
+            The directory path where the `course.yaml` file can be found.
+        """
         with open(os.path.join(path, "course.yaml"), "r") as f:
             yaml_file = yaml.safe_load(f)
             if len(yaml_file) < 1:
