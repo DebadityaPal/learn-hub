@@ -113,8 +113,8 @@ class Course:
         Takes the user's chapter selection and verifies if it is a proper selection.
         Then loads the `chapter.yaml` file into memory and return the Chapter object.
 
-        Parameter
-        ---------
+        Parameters
+        ----------
         chapter_id: int
             The index of the chapter selected by the user (Indexes starting from 1).
         """
@@ -147,8 +147,8 @@ class Course:
         Converts normal text to file name approved slugs, by removing forbidden characters and
         replacing spaces with "-".
 
-        Parameter
-        ---------
+        Parameters
+        ----------
         text: str
             The normal text that needs to be converted into a slug.
         """

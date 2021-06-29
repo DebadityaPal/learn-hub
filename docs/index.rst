@@ -18,6 +18,7 @@ Hence, we have created a library that provides interactive tutorial courses on h
     :caption: Getting started
 
     installing.md
+    api.md
 
 
 What is Hub?
