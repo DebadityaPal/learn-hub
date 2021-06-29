@@ -8,6 +8,7 @@ class NoSnippetInModuleException(Exception):
 
 
 def load_types(path):
+    """Loads all the Snippet Sub Modules and stores it in the dictionary."""
     if type(path) != list:
         path = [path]
     for loader, name, _ in pkgutil.walk_packages(path):
