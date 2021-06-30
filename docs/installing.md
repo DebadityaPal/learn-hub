@@ -1,8 +1,8 @@
-## Installing
+# Installing
 
 LearnHub is available at the [GitHub repository](https://github.com/DebadityaPal/learn-hub)
 
-### Install
+## Install
 
 Follow these steps to install and start using LearnHub.
 
@@ -12,7 +12,7 @@ cd learn-hub
 pip install -e .
 ```
 
-#### Upgrade
+### Upgrade
 
 If you want to upgrade your current installation of LearnHub, follow these steps.
 

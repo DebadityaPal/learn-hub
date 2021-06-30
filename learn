@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+
+import sys
+import argparse
+
+try:
+    import api.course
+except ImportError as err:
+    print("Missing Module: {module}".format(module=err))
+    sys.exit(1)
+
+
+def run_course(args):
+    try:
+        course = api.course.Course.load(args.path)
+        course.describe()
+        course.serve()
+    except FileNotFoundError as err:
+        print(
+            "Course {course} could not be loaded. Does the course.yaml file exist?".format(
+                course=err
+            )
+        )
+
+
+def parse(args):
+    global parser
+    parser = argparse.ArgumentParser()
+    subparsers = parser.add_subparsers(dest="subcommand")
+    run = subparsers.add_parser("run", help="Run a course stored in a directory.")
+    run.add_argument("path", help="Directory containing the course.yaml file")
+    run.set_defaults(func=run_course)
+    return parser.parse_args(args)
+
+
+if __name__ == "__main__":
+    try:
+        args = parse(sys.argv[1:])
+        args.func(args)
+        sys.exit(0)
+    except AttributeError:
+        parser.print_usage()
+        sys.exit(1)
