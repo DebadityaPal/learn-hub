@@ -66,7 +66,7 @@ class Snippet:
         pass
 
     @abc.abstractmethod
-    def test_response(self, data={}):
+    def test_response(self, response, data={}):
         """
         Abstract Method. To be implemented in every Sub-Class that inherits from this as a base class.
         Describes the method of testing the user input for correctness.
@@ -78,7 +78,7 @@ class Snippet:
         Serves the Snippet by printing the prompt, taking user input and testing it.
         If Input is incorrect, prints the hint (if available).
         """
-        self.prompt()
+        self.print_prompt()
         while True:
             response = self.get_response(data=data)
             result = self.test_response(response, data=data)

@@ -5,14 +5,12 @@ class textSnippet(NonConsoleSnippet):
 
     _requiredFields_ = []
 
-    def serve(self, data={}):
-        """Serves the snippet in the console. Prints input prompt and waits for user to provide input."""
-        self.print_prompt()
-        self.get_response()
-
     def get_response(self, data={}):
         """Takes in a key press as user input."""
         input("...")
+
+    def test_response(self, response, data={}):
+        return True
 
     def verify(self):
         """Verifies if Snippet prompt is a string."""
