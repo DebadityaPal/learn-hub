@@ -17,9 +17,7 @@ def run_course(args):
         course.serve()
     except FileNotFoundError as err:
         print(
-            "Course {course} could not be loaded. Does the course.yaml file exist?".format(
-                course=err
-            )
+            "Course {file} could not be loaded. Does the file exist?".format(file=err)
         )
 
 

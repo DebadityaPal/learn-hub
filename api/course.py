@@ -1,4 +1,5 @@
 import os
+from typing import Sequence
 from api.exceptions import NoSuchChapterException, NoSuchCourseException
 import unicodedata
 import re
@@ -7,9 +8,7 @@ import api.chapter
 
 
 class Course:
-    def __init__(
-        self, author, course, chapters, path, description=None, organization=None
-    ):
+    def __init__(self, author, course, chapters, path, **kwargs):
         """Creates a new Course object, that parses details from a `course.yaml` file.
 
         Parameters
@@ -31,8 +30,8 @@ class Course:
         self.course = course
         self.chapters = chapters.split(";")
         self.path = path
-        self.description = description
-        self.organization = organization
+        self.description = None
+        self.__dict__.update(kwargs)
         self.verify()
 
     def describe(self):
@@ -53,6 +52,7 @@ class Course:
 
     def contents(self):
         """Lists the chapters in the course in an indexed manner."""
+        print("Table of Contents:")
         for idx, chapter in enumerate(self.chapters):
             print("{idx} - {chapter}".format(idx=idx + 1, chapter=chapter))
 
