@@ -41,3 +41,25 @@
    :private-members:
    :special-members:
 ```
+
+## Snippets
+
+### Text Snippet
+
+```eval_rst
+.. autoclass:: api.snippets.textSnippet.textSnippet
+   :members:
+   :no-undoc-members:
+   :private-members:
+   :special-members:
+```
+
+### MCQ Snippet
+
+```eval_rst
+.. autoclass:: api.snippets.mcqSnippet.mcqSnippet
+   :members:
+   :no-undoc-members:
+   :private-members:
+   :special-members:
+```

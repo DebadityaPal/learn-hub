@@ -1,5 +1,4 @@
 import os
-from typing import Sequence
 from api.exceptions import NoSuchChapterException, NoSuchCourseException
 import unicodedata
 import re
