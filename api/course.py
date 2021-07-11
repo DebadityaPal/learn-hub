@@ -82,7 +82,7 @@ class Course:
         while True:
             self.contents()
             try:
-                print("Selection:")
+                print("Selection: ", end="")
                 chapter_id = input().strip()
                 self.serve_chapter(chapter_id)
             except NoSuchChapterException:
@@ -100,6 +100,7 @@ class Course:
         chapter_id: int
             The index of the chapter selected by the user (Indexes starting from 1).
         """
+        print("\n")
         chapter = self.load_chapter(chapter_id)
         chapter.serve(
             initial_data={

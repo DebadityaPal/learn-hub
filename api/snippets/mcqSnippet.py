@@ -7,6 +7,7 @@ class mcqSnippet(NonConsoleSnippet):
     _requiredFields_ = ["options", "answer"]
 
     def get_response(self, data={}):
+        """Shuffles and prints the options provided."""
         options = self.options
         random.shuffle(options)
 
@@ -25,8 +26,11 @@ class mcqSnippet(NonConsoleSnippet):
                 continue
 
     def test_response(self, response, data={}):
+        """Tests if the user's answer is the correct answer."""
+        print("\n")
         return response == self.answer
 
     def verify(self):
+        """Checks if the correct answer is present as an option."""
         if self.answer not in self.options:
             print("Choices must contain answer.")
