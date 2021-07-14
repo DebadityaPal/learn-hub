@@ -12,7 +12,11 @@
     - The effective centre of an activity, region, or network.
     - A network device that broadcasts data to every connected node.
   Answer: A Dataset Streaming package for Optimized ML Pipelining
-  Hint: "Pssst! Its a Dataset Streaming Package."
+  Hints:
+    - "That's correct!"
+    - "Wheels do have hubs, but we want to focus on Datasets."
+    - "Activity Hot Zones are called hub, but we want to focus on Datasets."
+    - "Computer Network Topologies do have hubs, but we want to focus on Datasets."
 
 - Category: text
   Prompt: "Well technically all of them are hubs, but we are most interested with the package."
@@ -27,7 +31,7 @@
     - Terabyte Scale Datasets
     - Petabyte Scale Datasets
   Answer: Petabyte Scale Datasets
-  Hint: Aim larger. Hub is amazing at storing large Datasets.
+  Hints: Aim larger. Hub is amazing at storing large Datasets.
 
 - Category: text
   Prompt: "So it would appear, for Hub, large and fast do go together. That's pretty neat if you ask me."

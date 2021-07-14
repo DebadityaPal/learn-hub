@@ -76,7 +76,6 @@ class Snippet:
     def serve(self, data={}):
         """
         Serves the Snippet by printing the prompt, taking user input and testing it.
-        If Input is incorrect, prints the hint (if available).
         """
         self.print_prompt()
         while True:
@@ -84,11 +83,6 @@ class Snippet:
             result = self.test_response(response, data=data)
             if result:
                 break
-            elif not result:
-                try:
-                    print(self.hint)
-                except AttributeError:
-                    pass
             else:
                 continue
 

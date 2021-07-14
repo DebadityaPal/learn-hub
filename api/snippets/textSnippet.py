@@ -10,7 +10,6 @@ class textSnippet(NonConsoleSnippet):
         input("...")
 
     def test_response(self, response, data={}):
-        print("\n")
         return True
 
     def verify(self):

@@ -99,7 +99,6 @@ class Course:
         chapter_id: int
             The index of the chapter selected by the user (Indexes starting from 1).
         """
-        print("\n")
         chapter = self.load_chapter(chapter_id)
         chapter.serve(
             initial_data={

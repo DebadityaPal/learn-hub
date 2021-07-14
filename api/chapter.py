@@ -17,6 +17,7 @@ class Chapter:
         """Iterates over each snippet and serves it on the console."""
         data = initial_data.copy()
         for snippet in self.snippets:
+            print("\n")
             submission = snippet.serve(data=data)
             if type(submission) == dict:
                 data.update(submission)
@@ -38,7 +39,7 @@ class Chapter:
     @classmethod
     def load(cls, file):
         """
-        Class Method. Loads a Chapter from an already opened file. 
+        Class Method. Loads a Chapter from an already opened file.
         Also forwards the file to initialize all the Snippets.
 
         Parameters

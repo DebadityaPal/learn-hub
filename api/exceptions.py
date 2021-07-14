@@ -22,3 +22,7 @@ class NoSuchChapterException(Exception):
 
 class NoSuchCourseException(Exception):
     pass
+
+
+class OptionHintMismatchException(Exception):
+    pass
