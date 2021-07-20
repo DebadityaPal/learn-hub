@@ -36,6 +36,7 @@ if __name__ == "__main__":
         args = parse(sys.argv[1:])
         args.func(args)
         sys.exit(0)
-    except AttributeError:
+    except AttributeError as e:
+        print(e)
         parser.print_usage()
         sys.exit(1)

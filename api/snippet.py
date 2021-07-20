@@ -1,5 +1,6 @@
 import abc
 import yaml
+from api.console import Console, Recorder
 from api.exceptions import (
     MissingFieldException,
     CouldNotLoadSnippetException,
@@ -130,3 +131,57 @@ class NonConsoleSnippet(Snippet):
         self.category = category
         self.prompt = prompt
         self.__dict__.update(kwargs)
+
+
+class ConsoleSnippet(Snippet):
+    __metaclass__ = abc.ABCMeta
+    _requiredFields_ = []
+
+    def __init__(self, category, prompt, **kwargs):
+        """
+        Initializes a Snippet Object that requires an Interactive Console.
+
+        Parameters
+        ----------
+        category: str
+            Type of Snippet, this name will be used to assign the object its specific sub-class. (ex. "Text", "MCQ")
+        prompt: str
+            The input prompt that will be displayed on the console before the user input for this snippet is taken.
+        """
+        self.category = category
+        self.prompt = prompt
+        self.__dict__.update(kwargs)
+        if hasattr(self, "yaml_hook"):
+            self.yaml_hook()
+
+    def new_console(self, local_variables):
+        self._recorder = Recorder()
+        new_locals = local_variables.copy()
+        new_locals["__ast_parser__"] = self._recorder
+        return Console(new_locals)
+
+    def serve(self, data={}):
+        self.print_prompt()
+        while True:
+            if "state" not in data:
+                data["state"] = dict()
+            if "modules" in data:
+                for module in data["modules"]:
+                    data["state"].update({module: __import__(module)})
+            # Manual DeepCopy
+            deepcopy_state = {}
+            for key, value in data["state"].items():
+                deepcopy_state[key] = value
+            for value in self.get_response(data=deepcopy_state):
+                if self.test_response(value, data=deepcopy_state):
+                    data["state"].update(value["added"])
+                    data["state"].update(value["changed"])
+                    for var in value["removed"]:
+                        del data["state"][var]
+                    return data
+                else:
+                    try:
+                        print(self.hints)
+                    except AttributeError:
+                        pass
+                    break

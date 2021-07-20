@@ -1,43 +1,12 @@
-- Category: text
-  Prompt: "Welcome to this Interactive Tutorial! At the end of each text prompt you will see this symbol (...), press any key to continue."
+- Category: code
+  Prompt: "Check if import is succesful. Type `hub.Dataset`"
+  Answer: hub.Dataset
 
-- Category: text
-  Prompt: "Yes exactly! Just like that, let's try it out one more time for confirmation."
+- Category: code
+  Prompt: "Let's load a Dataset. Type `ds = hub.Dataset('hub://activeloop/mnist-train')`"
+  Answer: ds = hub.Dataset("hub://activeloop/mnist-train")
+  Hints: "Check the syntax."
 
-- Category: mcq
-  Prompt: "What do you think Hub is all about? Dont be afraid to get it wrong."
-  Options:
-    - A Dataset Streaming package for Optimized ML Pipelining
-    - The central part of a wheel, from which the spokes radiate.
-    - The effective centre of an activity, region, or network.
-    - A network device that broadcasts data to every connected node.
-  Answer: A Dataset Streaming package for Optimized ML Pipelining
-  Hints:
-    - "That's correct!"
-    - "Wheels do have hubs, but we want to focus on Datasets."
-    - "Activity Hot Zones are called hub, but we want to focus on Datasets."
-    - "Computer Network Topologies do have hubs, but we want to focus on Datasets."
-
-- Category: text
-  Prompt: "Well technically all of them are hubs, but we are most interested with the package."
-
-- Category: text
-  Prompt: "Hub is The fastest way to store, access & manage datasets with version-control for PyTorch/TensorFlow."
-
-- Category: mcq
-  Prompt: "Experience tells us that fast and large dont go together very well, how large databases do you think can be stored using hub?"
-  Options:
-    - Gigabyte Scale Datasets
-    - Terabyte Scale Datasets
-    - Petabyte Scale Datasets
-  Answer: Petabyte Scale Datasets
-  Hints: Aim larger. Hub is amazing at storing large Datasets.
-
-- Category: text
-  Prompt: "So it would appear, for Hub, large and fast do go together. That's pretty neat if you ask me."
-
-- Category: text
-  Prompt: "But storing a database locally has lots of perks! It allows us to visualize the data whenever we want! How would Hub even do that? Right?"
-
-- Category: text
-  Prompt: "I've got you covered, well technically Hub has. Just hop onto their website at 'app.activeloop.ai', and there you can easily visualize your data."
+- Category: code
+  Prompt: "Time to check the metadata. Just type `print(ds)`"
+  Answer: print(ds)

@@ -7,25 +7,6 @@ class mcqSnippet(NonConsoleSnippet):
 
     _requiredFields_ = ["options", "answer"]
 
-    # def get_response(self, data={}):
-    #     """Shuffles and prints the options provided."""
-    #     options = self.options
-    #     random.shuffle(options)
-
-    #     while True:
-    #         for index, option in enumerate(options):
-    #             print("{idx}. {option}".format(idx=index + 1, option=option))
-    #         try:
-    #             answer = int(input("Select your answer: ")) - 1
-    #             return options[answer]
-    #         except (ValueError, IndexError):
-    #             print(
-    #                 "Invalid Option. Make sure your choice is between 1 and {num_op}".format(
-    #                     num_op=len(options)
-    #                 )
-    #             )
-    #             continue
-
     def get_response(self, data={}):
         self.option_indexes = list(range(len(self.options)))
         random.shuffle(self.option_indexes)

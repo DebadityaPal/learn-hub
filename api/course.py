@@ -100,11 +100,12 @@ class Course:
             The index of the chapter selected by the user (Indexes starting from 1).
         """
         chapter = self.load_chapter(chapter_id)
-        chapter.serve(
-            initial_data={
-                "path": self.path,
-            }
-        )
+        initial_data = {
+            "path": self.path,
+        }
+        if hasattr(self, "modules"):
+            initial_data["modules"] = self.modules
+        chapter.serve(initial_data)
         print("End Of Chapter! See you soon.")
 
     def load_chapter(self, chapter_id):
