@@ -2,6 +2,7 @@ import os
 from api.exceptions import NoSuchChapterException, NoSuchCourseException
 import unicodedata
 import re
+import sys
 import yaml
 import api.chapter
 
@@ -81,8 +82,11 @@ class Course:
         while True:
             self.contents()
             try:
+                print("{idx} - Exit".format(idx=len(self.chapters) + 1))
                 print("Selection: ", end="")
                 chapter_id = input().strip()
+                if chapter_id == str(len(self.chapters) + 1):
+                    sys.exit(0)
                 self.serve_chapter(chapter_id)
             except NoSuchChapterException:
                 print("No Chapter found at index: {idx}".format(idx=chapter_id))
@@ -103,8 +107,6 @@ class Course:
         initial_data = {
             "path": self.path,
         }
-        if hasattr(self, "modules"):
-            initial_data["modules"] = self.modules
         chapter.serve(initial_data)
         print("End Of Chapter! See you soon.")
 

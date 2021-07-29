@@ -1,12 +1,31 @@
-- Category: code
-  Prompt: "Check if import is succesful. Type `hub.Dataset`"
-  Answer: hub.Dataset
+- Category: text
+  Prompt: "Welcome to the CodeSnippet Showcase!"
 
 - Category: code
-  Prompt: "Let's load a Dataset. Type `ds = hub.Dataset('hub://activeloop/mnist-train')`"
-  Answer: ds = hub.Dataset("hub://activeloop/mnist-train")
-  Hints: "Check the syntax."
+  Prompt: "Let us start by importing hub, type `import hub`"
+  Answer: import hub
+
+- Category: text
+  Prompt: "Let's load up the MNIST dataset. It is stored at 'hub://activeloop/mnist-train'"
 
 - Category: code
-  Prompt: "Time to check the metadata. Just type `print(ds)`"
-  Answer: print(ds)
+  Prompt: "Load the dataset using, ds = hub.Dataset('hub://activeloop/mnist-train')"
+  Answer: ds = hub.Dataset('hub://activeloop/mnist-train')
+  Hints: "Check the URL and names of variables."
+
+- Category: text
+  Prompt: "Now let us write a function to show the label of a element in the dataset."
+
+- Category: code
+  Prompt: |
+    And the function should look like this...
+
+    def show_label(ds, idx):
+        print(ds.labels[idx].numpy())
+  Answer: |
+    def show_label(ds, idx):
+        print(ds.labels[idx].numpy())
+
+- Category: code
+  Prompt: "Now we test our function, type `show_label(ds, 10)`"
+  Answer: show_label(ds, 10)

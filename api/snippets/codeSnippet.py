@@ -15,3 +15,11 @@ class codeSnippet(ConsoleSnippet):
 
     def yaml_hook(self):
         self.answer_tree = ast.parse(self.answer, filename="<answer>", mode="single")
+
+    def verify(self):
+        if type(self.prompt) != str:
+            print(
+                "Prompt is of type: {type}, expected str.".format(
+                    type=type(self.prompt)
+                )
+            )

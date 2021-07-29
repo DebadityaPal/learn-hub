@@ -165,9 +165,6 @@ class ConsoleSnippet(Snippet):
         while True:
             if "state" not in data:
                 data["state"] = dict()
-            if "modules" in data:
-                for module in data["modules"]:
-                    data["state"].update({module: __import__(module)})
             # Manual DeepCopy
             deepcopy_state = {}
             for key, value in data["state"].items():
