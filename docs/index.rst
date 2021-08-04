@@ -37,6 +37,6 @@ Hub provides fast access to the state-of-the-art datasets for Deep Learning, ena
 
 .. toctree::
     :maxdepth: 3
-    :caption: Write your Own Course
+    :caption: For Authors
 
     course.md
