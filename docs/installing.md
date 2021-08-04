@@ -1,3 +1,5 @@
+**Note: This is an Unofficial Community Project**
+
 # Installing
 
 LearnHub is available at the [GitHub repository](https://github.com/DebadityaPal/learn-hub)

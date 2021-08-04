@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.abspath(".."))
 # -- Project information -----------------------------------------------------
 
 project = "Learn Hub"
-copyright = "2021, Debaditya Pal"
+copyright = "2021, Activeloop"
 author = "Debaditya Pal"
 
 # The full version, including alpha/beta/rc tags

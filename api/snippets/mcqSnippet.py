@@ -34,7 +34,13 @@ class mcqSnippet(NonConsoleSnippet):
             if self.options[response] != self.answer:
                 print(self.hints)
         elif type(self.hints) == list:
-            print(self.hints[response])
+            try:
+                print(self.hints[response])
+            except IndexError:
+                if len(self.hints) > 0:
+                    print(self.hints[0])
+                else:
+                    pass
         return self.options[response] == self.answer
 
     def verify(self):

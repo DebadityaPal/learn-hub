@@ -2,6 +2,7 @@
 
 import sys
 import argparse
+import os
 
 try:
     import api.course
@@ -21,13 +22,29 @@ def run_course(args):
         )
 
 
+def List(args):
+    courses = os.listdir("courses")
+    if courses:
+        print("The following courses were found:")
+        for idx, course in enumerate(courses):
+            print("{idx}. {course}".format(idx=idx + 1, course=course))
+    else:
+        print("No courses were found")
+
+
 def parse(args):
     global parser
     parser = argparse.ArgumentParser()
     subparsers = parser.add_subparsers(dest="subcommand")
+
     run = subparsers.add_parser("run", help="Run a course stored in a directory.")
     run.add_argument("path", help="Directory containing the course.yaml file")
     run.set_defaults(func=run_course)
+
+    ls = subparsers.add_parser(
+        "list", help="Show all the available courses in the courses directory."
+    )
+    ls.set_defaults(func=List)
     return parser.parse_args(args)
 
 
