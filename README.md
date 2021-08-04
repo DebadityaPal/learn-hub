@@ -1,5 +1,6 @@
+**Note: This is an Unofficial Community Project for GSoC 2021**
+
 [![Documentation Status](https://readthedocs.org/projects/learn-hub/badge/?version=latest)](https://learn-hub.readthedocs.io/en/latest/?badge=latest)
-**Note: This is an Unofficial Community Project**
 
 # What is LearnHub?
 
@@ -11,7 +12,9 @@ Hence, we have created a library that provides interactive tutorial courses on h
 
 # What is Hub?
 
-![https://raw.githubusercontent.com/activeloopai/Hub/main/media/hub_logo.png](https://raw.githubusercontent.com/activeloopai/Hub/main/media/hub_logo.png)
+<p align="center">
+    <img src="https://github.com/activeloopai/Hub/blob/main/media/hub_logo.png"/>
+</p>
 
 **The fastest way to access and manage datasets for PyTorch and TensorFlow**
 
