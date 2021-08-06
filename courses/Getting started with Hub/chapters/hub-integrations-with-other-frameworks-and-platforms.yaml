@@ -1,0 +1,59 @@
+- Category: text
+  Prompt: "So the last couple of chapters were about using Hub to upload and download datasets.\nBut in order to train models with these datasets, we must have a way of feeding this data into a model."
+
+- Category: text
+  Prompt: "There are multiple frameworks for Deep Learning and every user has their own preference.\nHowever, the most widely used ones are Tensorflow and PyTorch."
+
+- Category: text
+  Prompt: "Different frameworks have different classes for loading data into models. For PyTorch it is the DataLoader class whereas for Tensorflow it is the tf.data.Dataset class.\nSo wouldn’t it be amazing if Hub could directly convert its Datasets into these formats?"
+
+- Category: text
+  Prompt: "Don’t worry! We have you covered. Hub offers a seamless conversion to these formats so that our users can easily use their preferred framework in tandem with Hub"
+
+- Category: code
+  Prompt: "So without further ado, let’s get started.\nLet’s import hub, type `import hub` to do so"
+  Answer: import hub
+  Hints: "Do you have Hub installed?"
+
+- Category: code
+  Prompt: "We shall use the famous MNIST dataset for this tutorial.\nLoad it by typing `ds = hub.Dataset('hub://activeloop/mnist-train')`"
+  Answer: ds = hub.Dataset('hub://activeloop/mnist-train')
+  Hints: "Check the URL for spelling errors."
+
+- Category: code
+  Prompt: "First, let’s try to convert the dataset into a PyTorch Dataloader.In order to do so, we just have to run the following command.\nType `dataloader = ds.pytorch(batch_size = 16, num_workers = 2)`"
+  Answer: dataloader = ds.pytorch(batch_size = 16, num_workers = 2)
+  Hints: "Check for syntax errors."
+
+- Category: text
+  Prompt: "In the arguments, the batch_size is the number of elements in a single batch,\nand num_workers is the number of threads to be used for this conversion."
+
+- Category: code
+  Prompt: "Now run `type(dataloader)` to check if the conversion has worked.\nIf it returns a value of 'torch.utils.DataLoader' then we can say that the conversion has worked."
+  Answer: type(dataloader)
+  Hints: "Check for syntax errors."
+
+- Category: text
+  Prompt: "Similarly we can run `dataset = ds.tensorflow()` to convert the Hub Dataset to a tf.data.Dataset format."
+
+- Category: text
+  Prompt: "Now we discuss another possibility.\nWhat if a dataset is stored in a different platform and the user wants to convert that into a Hub Dataset."
+
+- Category: text
+  Prompt: "So for now Hub allows users to directly convert Kaggle datasets to Hub Datasets."
+
+- Category: text
+  Prompt: "We shall test this out on the dataset mentioned at 'https://www.kaggle.com/zalando-research/fashionmnist'.\nThe way we refer to this dataset is via its tag, which is 'zalando-research/fashionmnist'"
+
+- Category: code
+  Prompt: "In order to fetch this dataset in a Hub format we must run:\n`ds = hub.from_kaggle('zalando-research/fashionmnist')`"
+  Answer: ds = hub.from_kaggle('zalando-research/fashionmnist')
+  Hints: "Check for syntax errors."
+
+- Category: code
+  Prompt: "Let us run `type(ds)` to check if the fetch was a success.\nIf it returns `hub.core.dataset.Dataset` then our dataset has been successfully loaded."
+  Answer: type(ds)
+  Hints: "Check for syntax errors."
+
+- Category: text
+  Prompt: "That’s it for this chapter! The awesome devs at Hub are adding new features every day, so be sure to check out this amazing package."

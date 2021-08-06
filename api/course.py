@@ -28,7 +28,7 @@ class Course:
         """
         self.author = author
         self.course = course
-        self.chapters = chapters.split(";")
+        self.chapters = chapters
         self.path = path
         self.description = None
         self.__dict__.update(kwargs)

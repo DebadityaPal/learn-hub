@@ -1,0 +1,123 @@
+- Category: text
+  Prompt: "The last chapter was all about loading uploaded datasets, but what if you want to upload one yourself? We’ve got you covered.\nThis chapter will deal with creating new datasets and uploading data to them."
+
+- Category: text
+  Prompt: "In this chapter we will be working with a very small animals dataset, that is already shipped with this repo.\nThe dataset needs to be present within the working directory. If it isn’t, now would be the best time to move the dataset to the working directory."
+
+- Category: code
+  Prompt: "So before we begin, we should import hub into this runtime environment so that we can work with it.\nType `import hub` to do so."
+  Answer: import hub
+  Hints: "Do you have hub installed?"
+
+- Category: code
+  Prompt: "We will also be iterating over folders so we should import glob as well.\nType `import glob` to do so."
+  Answer: import glob
+  Hints: "Do you have glob installed?"
+
+- Category: text
+  Prompt: "For the purpose of this tutorial we will be creating a hub dataset stored locally.\nSo first of all, we need to decide where we want to store the dataset."
+
+- Category: code
+  Prompt: "Type `dataset_path = '.\temp_dataset'`"
+  Answer: dataset_path = '.\temp_dataset'
+  Hints: "Is the syntax alright?"
+
+- Category: text
+  Prompt: "Now we shall create an empty dataset in the specified location and then proceed to populate it with elements."
+
+- Category: code
+  Prompt: "To create an empty dataset, we must run \n`ds = hub.empty(dataset_path)`.\nThis takes in the path to the dataset as an argument."
+  Answer: ds = hub.empty(dataset_path)
+  Hints: "Is the syntax alright?"
+
+- Category: text
+  Prompt: "We have successfully created an empty dataset, but the dataset has no notion of the types of elements it will be populated with,\nso we must give it a helping hand by creating a few tensors."
+
+- Category: text
+  Prompt: "Note that for each tensor we must specify an htype (high level datatype) but if we don’t then Hub will infer the htype from the data itself.\nThe package is really smart like that."
+
+- Category: text
+  Prompt: "So if you observe, the animals dataset has two classes, namely: cats and dogs. Furthermore, each class has 2 pictures.\nSo we can infer that we will need to store two things in general: Images and Class Labels."
+
+- Category: code
+  Prompt: "First we shall create the images tensor. Run\n`ds.create_tensor('images', htype = 'image')`\nto create the required tensor."
+  Answer: ds.create_tensor('images', htype = 'image')
+  Hints: "Is the syntax alright?"
+
+- Category: code
+  Prompt: "Now run\n`ds.create_tensor('labels', htype = 'class_label')`\nto create the ClassLabel tensor."
+  Answer: ds.create_tensor('labels', htype = 'class_label')
+  Hints: "Is the syntax alright?"
+
+- Category: code
+  Prompt: "To verify our progress let us try to print the dataset object.\nType `print(ds)`\nThis should show us the tensors present inside the dataset amongst other things."
+  Answer: print(ds)
+  Hints: "Is the syntax alright?"
+
+- Category: code
+  Prompt: "Great work! Now we have a skeletal dataset ready! If you want to add some form of metadata to the dataset or the tensors you can do so.\nType `ds.info.update(description = 'My first Hub dataset')` to add the required metadata."
+  Answer: ds.info.update(description = 'My first Hub dataset')
+  Hints: "Is the syntax alright?"
+
+- Category: text
+  Prompt: "The above snippet also works with tensors.\nTo add metadata to tensors you must call `ds.<tensor_name>.info.update()`"
+
+- Category: code
+  Prompt: "Now we set the path to the images.\nType `dataset_folders = glob.glob('./animals/*')`"
+  Answer: dataset_folders = glob.glob('./animals/*')
+  Hints: "Is the syntax alright?"
+
+- Category: text
+  Prompt: "The Next Snippet will be a very important one.\nWe will be iterating over all the files inside the 2 folders and we will be appending the data to the dataset."
+
+- Category: code
+  Prompt: |
+    Let’s add the data to the dataset. Type the following function:
+
+    for label, folder_path in enumerate(dataset_folders):
+        paths = glob.glob(os.path.join(folder_path, '*'))
+        for path in paths:
+            ds.images.append(hub.read(path))
+            ds.labels.append(np.uint32(label))
+  Answer: |
+    for label, folder_path in enumerate(dataset_folders):
+        paths = glob.glob(os.path.join(folder_path, '*'))
+        for path in paths:
+            ds.images.append(hub.read(path))
+            ds.labels.append(np.uint32(label))
+  Hints: "Check for syntax errors."
+
+- Category: text
+  Prompt: "Amazing! Our dataset is now created and fully functional! See? It was really easy."
+
+- Category: text
+  Prompt: "Hub offers multiple htypes like Images, Class Label, Bounding Box, Video, Binary Mask and Segment Mask.\nIf you want to study them in details, visit the API reference at 'https://api-docs.activeloop.ai/index.html'"
+
+- Category: text
+  Prompt: "Furthermore, we realise you might want to use Activeloop storage.\nIn order to do that you must first register with Activeloop by running `activeloop register` in your console."
+
+- Category: text
+  Prompt: "Once you are registered you have to login using 'activeloop login -u <username> -p <password>'\nor alternatively just 'activeloop login' and the prompts for user details will follow."
+
+- Category: text
+  Prompt: "After logging in, you have to create a platform path specify the URL under which the dataset will be stored.\nIt has to follow this format: `platform_path = 'hub://workspace_name/dataset_name'`"
+
+- Category: text
+  Prompt: "By default the workspace_name would  be your username.\nBut you can also create workspaces for teams, organizations, or a collection of multiple users for easier collaboration."
+
+- Category: mcq
+  Prompt: "So to sum up, what is the sequence of steps you need to follow if you want to create a dataset?"
+  Options:
+    - Create empty Dataset, Create Tensors, Populate Data
+    - Create Tensors, Create Dataset, Populate Data
+    - Create Tensors, Create Metadata, Create Dataset, Populate Data
+    - Create Metadata, Create Empty Dataset, Populate Data
+  Answer: Create empty Dataset, Create Tensors, Populate Data
+  Hints:
+    - "That's correct!"
+    - "We must first create the Dataset, then create the Tensors"
+    - "We must first create the Dataset, then create the Tensors"
+    - "Metadata belongs to the Dataset, hence we must create that first."
+
+- Category: text
+  Prompt: "And that was it!\nNow you can create your own datasets and store them locally or on Activeloop storage.\nSee you soon!"

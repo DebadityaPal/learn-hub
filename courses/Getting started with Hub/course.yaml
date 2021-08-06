@@ -1,0 +1,8 @@
+- Course: Getting Started with Hub
+  Description: Learn what Hub is all about, and why you should use it.
+  Chapters:
+    - What is Hub and Why use it?
+    - Setting up Hub and Loading Datasets
+    - Creating your own Datasets and Hub Datatypes
+    - Hub Integrations with other Frameworks and Platforms
+  Author: Debaditya Pal

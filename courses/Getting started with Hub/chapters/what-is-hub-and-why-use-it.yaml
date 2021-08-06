@@ -1,0 +1,74 @@
+- Category: text
+  Prompt: "Optimal models need optimized datasets. Hub lets you optimize your models by allowing you to build great datasets quickly and easily.\nHub allows you to have a simple way to transform, version control, and stream your datasets to ML frameworks."
+
+- Category: text
+  Prompt: "Data scientists spend the majority of their time building infrastructure, transferring data, and writing boilerplate code.\nHub streamlines these tasks so that you can focus on building amazing ML models."
+
+- Category: text
+  Prompt: "Hub enables you to stream unlimited amounts of data from the cloud to any machine without sacrificing performance compared to local storage."
+
+
+- Category: mcq
+  Prompt: "So which of the following do you think is an advantage of using Hub?"
+  Options:
+  - Saving local storage space, by hosting datasets on the cloud.
+  - Saving valuable time by removing dataset related boilerplate code.
+  - Easy collaboration with team members as datasets can be easily accessed by everyone.
+  - Endless experimentation since Hub allows you to stream unlimited amounts of data.
+  - All of the above. Hub is totally epic!
+  Answer: All of the above. Hub is totally epic!
+  Hints:
+  - "That's indeed an advantage, but there are more! :)"
+  - "That's indeed an advantage, but there are more! :)"
+  - "That's indeed an advantage, but there are more! :)"
+  - "That's indeed an advantage, but there are more! :)"
+  - "That's correct! Isn't Hub amazing?"
+
+- Category: text
+  Prompt: "So all of this is great, but what about the model? There are two main libraries when it comes to building models in Python: Tensorflow and PyTorch.\nBoth of these libraries have different methods of ingesting data. Wouldn’t it be amazing if Hub could directly integrate with them?"
+
+- Category: text
+  Prompt: "Fear not for we have you covered! Hub connects datasets to PyTorch and TensorFlow with minimal boilerplate code,\nand it contains powerful tools for version control, building ML pipelines, and running distributed workloads."
+
+- Category: text
+  Prompt: "Now you might be interested in shifting your datasets to Hub, but the fact that different datasets are stored in different formats\nand maybe even different cloud services might still raise concerns. We have a solution for that too."
+
+- Category: mcq
+  Prompt: "Which of the following do you think Hub seamlessly connects to?"
+  Options:
+  - Tensorflow Datasets
+  - PyTorch Datasets
+  - Kaggle Datasets
+  - All of the above
+  Answer: All of the above
+  Hints:
+  - "Hub does seamlessly connect to Tensorflow Datasets! But there are more."
+  - "Hub does seamlessly connect to PyTorch Datasets! But there are more."
+  - "Hub does seamlessly connect to Kaggle Datasets! But there are more."
+  - "That's right!"
+
+- Category: text
+  Prompt: "Hub allows you to directly convert your datasets from the above mentioned formats to the Hub format and we are constantly adding new integrations as well.\nThe conversion is as simple as writing a single line of code."
+
+- Category: text
+  Prompt: "'But having a dataset stored locally gives me a lot of control over the data, I can tweak it and visualize the results whenever I want', We hear you and it is a genuine concern.\n So, we decided to create a way for you to visualize your dataset."
+
+- Category: text
+  Prompt: "Hub allows you to visualize your dataset at each step of the pipeline using the visualizer app at <insert URL for Hub 2.0 visualizer>.\nFeel free to check out the app and use it on existing datasets."
+
+- Category: text
+  Prompt: " In this ever changing world everything evolves and it is only normal for datasets to do the same.\nHowever, it is also tedious to keep on creating copies of the dataset for each iteration,\nhence we have created a Dataset Versioning System that allows you to modify dataset elements across different versions and seamlessly switch between them!"
+
+- Category: mcq
+  Prompt: "So what did you learn about Hub from this chapter?"
+  Options:
+  - Hub is a dataset optimization package that allows unlimited data streaming, data visualization, dataset versioning and seamless integration with popular frameworks.
+  - Hub is a dataset streaming package that allows users to store and stream unlimited amounts of data.
+  - Hub is a data visualization package that allows users to view individual elements from their dataset after uploading it.
+  - Hub is a data versioning package that allows users to tweak their datasets without having to create a whole new dataset for it.
+  Answer: Hub is a dataset optimization package that allows unlimited data streaming, data visualization, dataset versioning and seamless integration with popular frameworks.
+  Hints:
+  - That's right! Hub automates your entire data pipeline
+  - That is indeed an important aspect of Hub, but there's more!
+  - That is indeed an important aspect of Hub, but there's more!
+  - That is indeed an important aspect of Hub, but there's more!

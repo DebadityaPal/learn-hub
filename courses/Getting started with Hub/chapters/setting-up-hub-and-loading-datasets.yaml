@@ -1,0 +1,87 @@
+- Category: text
+  Prompt: "Setting Up Hub is really easy. The package can be installed through pip via the following command - `pip3 install hub`."
+
+- Category: text
+  Prompt: "If you haven’t already installed Hub, we recommend you to do so and restart this chapter, as we will be using Hub functions later on."
+
+- Category: text
+  Prompt: "Great! Now that we have installed Hub, we can begin our journey towards a much easier experience with datasets.\nBut before that let’s discover some of the popular datasets that are available with Hub."
+
+- Category: mcq
+  Prompt: "Which of the following datasets do you think you can use via Hub?"
+  Options:
+    - MNIST
+    - CIFAR-100
+    - STL-10
+    - KMNIST
+    - All of them!
+  Answer: All of them!
+  Hints:
+    - MNIST is there on Hub, but that's not all
+    - CIFAR-100 is there on Hub, but that's not all
+    - STL-10 is there on Hub, but that's not all
+    - KMNIST is there on Hub, but that's not all
+    - That's right! We care about all the datasets and have tried to include as many as possible.
+
+- Category: text
+  Prompt: "Hub offers multiple datasets stashed across multiple storage providers.\nSo, we need a way to refer to each of them without causing confusion. This is where URLs come in."
+
+- Category: text
+  Prompt: "If you want to load locally stored Hub Datasets, you could use:\n`ds = hub.load('./my_dataset_path') `"
+
+- Category: text
+  Prompt: "If you want to load Hub datasets stored in Amazon S3 buckets, you could use:\nds = hub.load('s3://my_dataset_bucket', creds={...})"
+
+- Category: text
+  Prompt: " If you want to load Hub datasets stored in Activeloop Storage, you could use:\nds = hub.load('hub://activeloop/public_dataset_name')"
+
+- Category: text
+  Prompt: "You might need to make an account on the Platform in order to access these Hub Datasets"
+
+- Category: text
+  Prompt: "Furthermore, if you wanted to load Hub Datasets stored in another workspace on the Activeloop Platform, you could use:\nds = hub.load('hub://workspace_name/dataset_name')"
+
+- Category: text
+  Prompt: "Another way to load datasets is to use the `hub.dataset()` function. However, this function is also used to create new datasets from scratch."
+
+- Category: text
+  Prompt: "A typo in the path might lead to an unwanted creation of a new dataset. If a dataset was created accidently, you  can run `ds.delete()` to remove the newly created dataset."
+
+- Category: code
+  Prompt: "Now let us load our very first dataset with Hub. In order to do that we must first import hub into the runtime environment.\nGo ahead and type `import hub` to get started."
+  Answer: import hub
+  Hints: "Do you have Hub installed?"
+
+- Category: code
+  Prompt: "We shall be using the MNIST dataset for this tutorial. It has already been uploaded to Activeloop storage for us to use.\nHence, we can simply run `ds = hub.load('hub://activeloop/mnist-train')` to load the dataset."
+  Answer: ds = hub.load("hub://activeloop/mnist-train")
+  Hints: "Check the URL of the dataset."
+
+- Category: code
+  Prompt: "Great work! Now we can run `type(ds)` to check if `hub.Dataset` returned a proper object or not.\nIf the output is `'hub.core.dataset.Dataset'` then we can infer that the function returned the correct object."
+  Answer: type(ds)
+  Hints: "Check for syntactical Errors."
+
+- Category: code
+  Prompt: "Now that we have our dataset, let’s take a look at what is inside it. Run `ds.tensors` to get a dictionary of all the tensors stored in the dataset.\nIn our case, we should have two tensors, 'images' and 'labels' since MNIST is a relatively simple dataset."
+  Answer: ds.tensors
+  Hints: "Check for syntactical Errors."
+
+- Category: code
+  Prompt: "The next logical step would be to try and access elements inside the dataset, so let’s do just that.\nWe would need to specify the tensor and the index to access the element. Try running `ds.labels[0].numpy()`"
+  Answer: ds.labels[0].numpy()
+  Hints: "Check for syntactical Errors."
+
+- Category: text
+  Prompt: "By default the `ds.labels[index]` returns a tensor object which enables us to perform lazy computation\nbut since we want to take a look at the values we add the `numpy()` function which converts it into a numpy array."
+
+- Category: text
+  Prompt: "Lazy loading is super beneficial when it comes to loading chunks of datasets.\nIt reduces the initial load time and conserves bandwidth until the user actually needs the values."
+
+- Category: code
+  Prompt: "This format of accessing elements also supports slicing,\ntype `ds.labels[0:5].numpy()` and you should see the first 5 labels in the dataset."
+  Answer: ds.labels[0:5].numpy()
+  Hints: "Check for syntactical Errors."
+
+- Category: text
+  Prompt: "And that was it! You now know how to set up Hub in your workstation and can seamlessly load datasets to tinker around with! See you soon!"
