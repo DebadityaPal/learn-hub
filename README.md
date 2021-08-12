@@ -13,7 +13,7 @@ Hence, we have created a library that provides interactive tutorial courses on h
 # What is Hub?
 
 <p align="center">
-    <img src="https://github.com/activeloopai/Hub/blob/main/media/hub_logo.png"/>
+    <img src="https://camo.githubusercontent.com/4747ade63cbe1ec71dbaee37546c669fa0ccca7fb05b8fdeb5c42a1cdc0a1266/68747470733a2f2f7777772e6c696e6b706963747572652e636f6d2f712f6875625f6c6f676f2d312e706e67"/>
 </p>
 
 **The fastest way to access and manage datasets for PyTorch and TensorFlow**
