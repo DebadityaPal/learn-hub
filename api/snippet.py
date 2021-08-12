@@ -6,6 +6,7 @@ from api.exceptions import (
     CouldNotLoadSnippetException,
     UnknownSnippetCategoryException,
 )
+from api.colors import print_prompt, print_hints
 
 
 class Snippet:
@@ -56,7 +57,7 @@ class Snippet:
 
     def print_prompt(self):
         """Prints the prompt of the Snippet."""
-        print(self.prompt)
+        print_prompt(self.prompt)
 
     @abc.abstractmethod
     def get_response(self, data={}):
@@ -178,7 +179,7 @@ class ConsoleSnippet(Snippet):
                     return data
                 else:
                     try:
-                        print(self.hints)
+                        print_hints(self.hints)
                     except AttributeError:
                         pass
                     break

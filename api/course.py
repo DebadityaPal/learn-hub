@@ -1,5 +1,6 @@
 import os
 from api.exceptions import NoSuchChapterException, NoSuchCourseException
+from api.colors import print_prompt, print_option, print_error
 import unicodedata
 import re
 import sys
@@ -52,9 +53,9 @@ class Course:
 
     def contents(self):
         """Lists the chapters in the course in an indexed manner."""
-        print("Table of Contents:")
+        print_prompt("Table of Contents:")
         for idx, chapter in enumerate(self.chapters):
-            print("{idx} - {chapter}".format(idx=idx + 1, chapter=chapter))
+            print_option("{idx} - {chapter}".format(idx=idx + 1, chapter=chapter))
 
     def verify(self):
         """
@@ -64,14 +65,16 @@ class Course:
         """
         for field in ["course", "chapters", "author"]:
             if not hasattr(self, field):
-                print("course.yaml has no '{field}' attribute".format(field=field))
+                print_error(
+                    "course.yaml has no '{field}' attribute".format(field=field)
+                )
 
         for idx in range(1, len(self.chapters) + 1):
             chapter = self.load_chapter(idx)
             if hasattr(chapter, "verify"):
                 chapter.verify()
             else:
-                print(
+                print_error(
                     "Warning: No verification test detected. (Chapter {id}".format(
                         id=idx + 1
                     )
@@ -82,16 +85,16 @@ class Course:
         while True:
             self.contents()
             try:
-                print("{idx} - Exit".format(idx=len(self.chapters) + 1))
-                print("Selection: ", end="")
+                print_option("{idx} - Exit".format(idx=len(self.chapters) + 1))
+                print_prompt("Selection: ", end="")
                 chapter_id = input().strip()
                 if chapter_id == str(len(self.chapters) + 1):
                     sys.exit(0)
                 self.serve_chapter(chapter_id)
             except NoSuchChapterException:
-                print("No Chapter found at index: {idx}".format(idx=chapter_id))
+                print_error("No Chapter found at index: {idx}".format(idx=chapter_id))
             except EOFError:
-                print("Error: EOF Reached")
+                print_error("Error: EOF Reached")
                 break
 
     def serve_chapter(self, chapter_id):
@@ -108,7 +111,7 @@ class Course:
             "path": self.path,
         }
         chapter.serve(initial_data)
-        print("End Of Chapter! See you soon.")
+        print_prompt("End Of Chapter! See you soon.")
 
     def load_chapter(self, chapter_id):
         """

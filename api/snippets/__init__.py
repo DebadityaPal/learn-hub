@@ -1,4 +1,5 @@
 import pkgutil
+from api.colors import print_error
 
 types = {}
 
@@ -20,7 +21,7 @@ def load_types(path):
                 raise NoSnippetInModuleException("No class %s" % name)
 
         except Exception as e:
-            print("Skipping module {}: {}".format(name, e))
+            print_error("Skipping module {}: {}".format(name, e))
 
 
 load_types(__path__)

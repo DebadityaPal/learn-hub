@@ -3,11 +3,12 @@
 import sys
 import argparse
 import os
+from api.colors import print_error, print_prompt, print_option
 
 try:
     import api.course
 except ImportError as err:
-    print("Missing Module: {module}".format(module=err))
+    print_error("Missing Module: {module}".format(module=err))
     sys.exit(1)
 
 
@@ -17,7 +18,7 @@ def run_course(args):
         course.describe()
         course.serve()
     except FileNotFoundError as err:
-        print(
+        print_error(
             "Course {file} could not be loaded. Does the file exist?".format(file=err)
         )
 
@@ -25,11 +26,11 @@ def run_course(args):
 def List(args):
     courses = os.listdir("courses")
     if courses:
-        print("The following courses were found:")
+        print_prompt("The following courses were found:")
         for idx, course in enumerate(courses):
-            print("{idx}. {course}".format(idx=idx + 1, course=course))
+            print_option("{idx}. {course}".format(idx=idx + 1, course=course))
     else:
-        print("No courses were found")
+        print_error("No courses were found")
 
 
 def parse(args):
@@ -54,6 +55,6 @@ if __name__ == "__main__":
         args.func(args)
         sys.exit(0)
     except AttributeError as e:
-        print(e)
+        print_error(e)
         parser.print_usage()
         sys.exit(1)

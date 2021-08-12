@@ -1,5 +1,5 @@
 import api.snippet
-
+from api.colors import print_error
 
 class Chapter:
     def __init__(self, snippets):
@@ -30,7 +30,7 @@ class Chapter:
             if hasattr(snippet, "verify"):
                 snippet.verify()
             else:
-                print(
+                print_error(
                     "Warning: No verification Test detected. (Snippet {idx})".format(
                         idx=idx
                     )

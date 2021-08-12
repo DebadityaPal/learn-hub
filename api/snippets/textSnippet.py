@@ -1,4 +1,5 @@
 from api.snippet import NonConsoleSnippet
+from api.colors import print_error
 
 
 class textSnippet(NonConsoleSnippet):
@@ -15,7 +16,7 @@ class textSnippet(NonConsoleSnippet):
     def verify(self):
         """Verifies if Snippet prompt is a string."""
         if type(self.prompt) != str:
-            print(
+            print_error(
                 "Prompt is of type: {type}, expected str.".format(
                     type=type(self.prompt)
                 )

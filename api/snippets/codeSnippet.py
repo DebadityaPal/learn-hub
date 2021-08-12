@@ -1,5 +1,6 @@
 import ast
 from api.snippet import ConsoleSnippet
+from api.colors import print_error
 
 
 class codeSnippet(ConsoleSnippet):
@@ -18,7 +19,7 @@ class codeSnippet(ConsoleSnippet):
 
     def verify(self):
         if type(self.prompt) != str:
-            print(
+            print_error(
                 "Prompt is of type: {type}, expected str.".format(
                     type=type(self.prompt)
                 )
