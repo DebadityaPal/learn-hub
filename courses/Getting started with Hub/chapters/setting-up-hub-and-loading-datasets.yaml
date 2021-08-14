@@ -36,7 +36,7 @@
   Prompt: " If you want to load Hub datasets stored in Activeloop Storage, you could use:\nds = hub.load('hub://activeloop/public_dataset_name')"
 
 - Category: text
-  Prompt: "You might need to make an account on the Platform in order to access these Hub Datasets"
+  Prompt: "You might need to make an account on the Platform in order to access these Hub Datasets. Register at `https://app.activeloop.ai/register`"
 
 - Category: text
   Prompt: "Furthermore, if you wanted to load Hub Datasets stored in another workspace on the Activeloop Platform, you could use:\nds = hub.load('hub://workspace_name/dataset_name')"
@@ -58,11 +58,6 @@
   Hints: "Check the URL of the dataset."
 
 - Category: code
-  Prompt: "Great work! Now we can run `type(ds)` to check if `hub.Dataset` returned a proper object or not.\nIf the output is `'hub.core.dataset.Dataset'` then we can infer that the function returned the correct object."
-  Answer: type(ds)
-  Hints: "Check for syntactical Errors."
-
-- Category: code
   Prompt: "Now that we have our dataset, let’s take a look at what is inside it. Run `ds.tensors` to get a dictionary of all the tensors stored in the dataset.\nIn our case, we should have two tensors, 'images' and 'labels' since MNIST is a relatively simple dataset."
   Answer: ds.tensors
   Hints: "Check for syntactical Errors."
@@ -76,7 +71,7 @@
   Prompt: "By default the `ds.labels[index]` returns a tensor object which enables us to perform lazy computation\nbut since we want to take a look at the values we add the `numpy()` function which converts it into a numpy array."
 
 - Category: text
-  Prompt: "Lazy loading is super beneficial when it comes to loading chunks of datasets.\nIt reduces the initial load time and conserves bandwidth until the user actually needs the values."
+  Prompt: "Lazy loading is super beneficial because it only loads data when it is needed,\ninstead of downloading all data in advance."
 
 - Category: code
   Prompt: "This format of accessing elements also supports slicing,\ntype `ds.labels[0:5].numpy()` and you should see the first 5 labels in the dataset."

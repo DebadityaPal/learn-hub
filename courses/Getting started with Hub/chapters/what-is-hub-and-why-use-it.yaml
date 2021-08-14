@@ -11,8 +11,8 @@
 - Category: mcq
   Prompt: "So which of the following do you think is an advantage of using Hub?"
   Options:
-  - Saving local storage space, by hosting datasets on the cloud.
-  - Saving valuable time by removing dataset related boilerplate code.
+  - Drastically reducing local storage space, by hosting datasets on the cloud.
+  - Saving valuable time by eliminating download and removing dataset related boilerplate code.
   - Easy collaboration with team members as datasets can be easily accessed by everyone.
   - Endless experimentation since Hub allows you to stream unlimited amounts of data.
   - All of the above. Hub is totally epic!
