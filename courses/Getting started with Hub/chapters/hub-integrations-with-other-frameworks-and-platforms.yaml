@@ -5,23 +5,23 @@
   Prompt: "There are multiple frameworks for Deep Learning and every user has their own preference.\nHowever, the most widely used ones are Tensorflow and PyTorch."
 
 - Category: text
-  Prompt: "Different frameworks have different classes for loading data into models. For PyTorch it is the DataLoader class whereas for Tensorflow it is the tf.data.Dataset class.\nSo wouldn’t it be amazing if Hub could directly convert its Datasets into these formats?"
+  Prompt: "Different frameworks have different classes for loading data into models. For PyTorch it is the DataLoader class whereas for Tensorflow it is the tf.data.Dataset class.\nSo wouldn't it be amazing if Hub could directly convert its Datasets into these formats?"
 
 - Category: text
-  Prompt: "Don’t worry! We have you covered. Hub offers a seamless conversion to these formats so that our users can easily use their preferred framework in tandem with Hub"
+  Prompt: "Don't worry! We have you covered. Hub offers a seamless conversion to these formats so that our users can easily use their preferred framework in tandem with Hub"
 
 - Category: code
-  Prompt: "So without further ado, let’s get started.\nLet’s import hub, type `import hub` to do so"
+  Prompt: "So without further ado, let's get started.\nLet's import hub, type `import hub` to do so"
   Answer: import hub
   Hints: "Do you have Hub installed?"
 
 - Category: code
-  Prompt: "We shall use the famous MNIST dataset for this tutorial.\nLoad it by typing `ds = hub.Dataset('hub://activeloop/mnist-train')`"
-  Answer: ds = hub.Dataset('hub://activeloop/mnist-train')
+  Prompt: "We shall use the animals for this tutorial.\nLoad it by typing `ds = hub.dataset('./animals_dataset')`"
+  Answer: ds = hub.dataset('./animals_dataset')
   Hints: "Check the URL for spelling errors."
 
 - Category: code
-  Prompt: "First, let’s try to convert the dataset into a PyTorch Dataloader.In order to do so, we just have to run the following command.\nType `dataloader = ds.pytorch(batch_size = 16, num_workers = 2)`"
+  Prompt: "First, let's try to convert the dataset into a PyTorch Dataloader.In order to do so, we just have to run the following command.\nType `dataloader = ds.pytorch(batch_size = 16, num_workers = 2)`"
   Answer: dataloader = ds.pytorch(batch_size = 16, num_workers = 2)
   Hints: "Check for syntax errors."
 
@@ -46,14 +46,9 @@
   Prompt: "We shall test this out on the dataset mentioned at 'https://www.kaggle.com/zalando-research/fashionmnist'.\nThe way we refer to this dataset is via its tag, which is 'zalando-research/fashionmnist'"
 
 - Category: code
-  Prompt: "In order to fetch this dataset in a Hub format we must run:\n`ds = hub.from_kaggle('zalando-research/fashionmnist')`"
-  Answer: ds = hub.from_kaggle('zalando-research/fashionmnist')
-  Hints: "Check for syntax errors."
-
-- Category: code
-  Prompt: "Let us run `type(ds)` to check if the fetch was a success.\nIf it returns `hub.core.dataset.Dataset` then our dataset has been successfully loaded."
-  Answer: type(ds)
+  Prompt: "In order to fetch this dataset in a Hub format we must run:\n`ds = hub.ingest_kaggle('zalando-research/fashionmnist')`"
+  Answer: ds = hub.ingest_kaggle('zalando-research/fashionmnist')
   Hints: "Check for syntax errors."
 
 - Category: text
-  Prompt: "That’s it for this chapter! The awesome devs at Hub are adding new features every day, so be sure to check out this amazing package."
+  Prompt: "That's it for this chapter! The awesome devs at Hub are adding new features every day, so be sure to check out this amazing package."

@@ -1,8 +1,8 @@
 - Category: text
-  Prompt: "The last chapter was all about loading uploaded datasets, but what if you want to upload one yourself? We’ve got you covered.\nThis chapter will deal with creating new datasets and uploading data to them."
+  Prompt: "The last chapter was all about loading uploaded datasets, but what if you want to upload one yourself? We've got you covered.\nThis chapter will deal with creating new datasets and uploading data to them."
 
 - Category: text
-  Prompt: "In this chapter we will be working with a very small animals dataset, that is already shipped with this repo.\nThe dataset needs to be present within the working directory. If it isn’t, now would be the best time to move the dataset to the working directory."
+  Prompt: "In this chapter we will be working with a very small animals dataset, that is already shipped with this repo.\nThe dataset needs to be present within the working directory. If it isn't, now would be the best time to move the dataset to the working directory."
 
 - Category: code
   Prompt: "So before we begin, we should import hub into this runtime environment so that we can work with it.\nType `import hub` to do so."
@@ -14,12 +14,17 @@
   Answer: import os
   Hints: "Check the syntax."
 
+- Category: code
+  Prompt: "We also need numpy to aid the array creation.\nType `import numpy as np` to import it."
+  Answer: import numpy as np
+  Hints: "Check the syntax."
+
 - Category: text
   Prompt: "For the purpose of this tutorial we will be creating a hub dataset stored locally.\nSo first of all, we need to decide where we want to store the dataset."
 
 - Category: code
-  Prompt: Type `dataset_path = '.\temp_dataset'`
-  Answer: dataset_path = '.\temp_dataset'
+  Prompt: Type `dataset_path = './temp_dataset'`
+  Answer: dataset_path = './temp_dataset'
   Hints: "Is the syntax alright?"
 
 - Category: text
@@ -38,6 +43,16 @@
 
 - Category: text
   Prompt: "Specifying an htype allows for strict settings and error handling,\nand it is critical for increasing the performance of hub datasets containing rich data such as images and videos."
+
+- Category: code
+  Prompt: "Now we set the path to the images. Type\ndataset_folder = './animals'"
+  Answer: dataset_folder = './animals'
+  Hints: "Is the syntax alright?"
+
+- Category: code
+  Prompt: "We shall now define the class names that we have. Type\nclass_names = os.listdir(dataset_folder)"
+  Answer: class_names = os.listdir(dataset_folder)
+  Hints: "Is the syntax alright?"
 
 - Category: text
   Prompt: "So if you observe, the animals dataset has two classes, namely: cats and dogs. Furthermore, each class has 2 pictures.\nSo we can infer that we will need to store two things in general: Images and Class Labels."
@@ -63,16 +78,6 @@
   Prompt: "The above snippet for metadata also works with tensors.\nTo add metadata to tensors you must call `ds.<tensor_name>.info.update()`"
 
 - Category: code
-  Prompt: "Now we set the path to the images. Type\ndataset_folders = './animals'"
-  Answer: dataset_folders = './animals'
-  Hints: "Is the syntax alright?"
-
-- Category: code
-  Prompt: "Next up, we shall define the class names that we have. Type\nclass_names = os.listdir(dataset_folder)"
-  Answer: class_names = os.listdir(dataset_folder)
-  Hints: "Is the syntax alright?"
-
-- Category: code
   Prompt: "Following that we shall maintain a list of all the files.\nRun the following snippet to initialize an empty list.\n files_list = []"
   Answer: files_list = []
   Hints: "Is the syntax alright?"
@@ -95,21 +100,21 @@
 
 - Category: code
   Prompt: |
-    Let’s add the data to the dataset. Type the following function:
+    Let's add the data to the dataset. Type the following function:
 
     with ds:
         for file in files_list:
             label_text = os.path.basename(os.path.dirname(file))
             label_num = class_names.index(label_text)
-            ds.images.append(hub.read(file)
+            ds.images.append(hub.read(file))
             ds.labels.append(np.uint32(label_num))
   Answer: |
     with ds:
-          for file in files_list:
-              label_text = os.path.basename(os.path.dirname(file))
-              label_num = class_names.index(label_text)
-              ds.images.append(hub.read(file)
-              ds.labels.append(np.uint32(label_num))
+        for file in files_list:
+            label_text = os.path.basename(os.path.dirname(file))
+            label_num = class_names.index(label_text)
+            ds.images.append(hub.read(file))
+            ds.labels.append(np.uint32(label_num))
   Hints: "Check for syntax errors."
 
 - Category: text
@@ -140,6 +145,11 @@
     - "We must first create the Dataset, then create the Tensors"
     - "We must first create the Dataset, then create the Tensors"
     - "Metadata belongs to the Dataset, hence we must create that first."
+
+- Category: code
+  Prompt: "To free up space type ds.delete() to delete the dataset."
+  Answer: ds.delete()
+  Hint: "Check the syntax."
 
 - Category: text
   Prompt: "And that was it!\nNow you can create your own datasets and store them locally or on Activeloop storage.\nSee you soon!"

@@ -2,7 +2,7 @@
   Prompt: "Setting Up Hub is really easy. The package can be installed through pip via the following command - `pip3 install hub`."
 
 - Category: text
-  Prompt: "If you haven’t already installed Hub, we recommend you to do so and restart this chapter, as we will be using Hub functions later on."
+  Prompt: "If you haven't already installed Hub, we recommend you to do so and restart this chapter, as we will be using Hub functions later on."
 
 - Category: text
   Prompt: "Great! Now that we have installed Hub, we can begin our journey towards a much easier experience with datasets.\nBut before that let’s discover some of the popular datasets that are available with Hub."
@@ -63,7 +63,7 @@
   Hints: "Check for syntactical Errors."
 
 - Category: code
-  Prompt: "The next logical step would be to try and access elements inside the dataset, so let’s do just that.\nWe would need to specify the tensor and the index to access the element. Try running `ds.labels[0].numpy()`"
+  Prompt: "The next logical step would be to try and access elements inside the dataset, so let's do just that.\nWe would need to specify the tensor and the index to access the element. Try running `ds.labels[0].numpy()`"
   Answer: ds.labels[0].numpy()
   Hints: "Check for syntactical Errors."
 
