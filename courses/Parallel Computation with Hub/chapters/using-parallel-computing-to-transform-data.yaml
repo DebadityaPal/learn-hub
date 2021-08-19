@@ -1,0 +1,179 @@
+- Category: text
+  Prompt: "In the previous chapter we used parallel computing to upload data to a dataset.\nHowever, we can also use it to transform data in a Dataset."
+
+- Category: text
+  Prompt: "In this chapter we will be doing just that.\nThe idea is to create a simple dataset with a few numbers and then we will square all the numbers using parallel computing and put that in a different Dataset."
+
+- Category: code
+  Prompt: Let us first import hub. Run `import hub` to do so.
+  Answer: import hub
+  Hint: Do you have hub installed?
+
+- Category: code
+  Prompt: Then we must create directory paths for the two Datasets. Run `ds_path = './temp_dataset'`
+  Answer: ds_path = './temp_dataset'
+  Hint: Check the syntax for errors.
+
+- Category: code
+  Prompt: Now for the other Dataset run `transformed_ds_path = './temp_transformed_dataset'`
+  Answer: transformed_ds_path = './temp_transformed_dataset'
+  Hint: Check the syntax for errors.
+
+- Category: code
+  Prompt: Let us create empty datasets in the two locations. To do so run `ds = hub.empty(ds_path)`
+  Answer: ds = hub.empty(ds_path)
+  Hint: Check the syntax for errors.
+
+- Category: code
+  Prompt: Now for the second one type `ds2 = hub.empty(transformed_ds_path)`
+  Answer: ds2 = hub.empty(transformed_ds_path)
+  Hint: Check the syntax for errors.
+
+- Category: text
+  Prompt: "Now that the two empty datasets have been created we must initialize the tensors and populate them with elements.\nFor this example the Datasets will contain only one tensor and we shall name it 'number'."
+
+- Category: code
+  Prompt: |
+    To initialize the tensor in the first dataset, type 
+
+    with ds:
+        ds.create_tensor('number')
+  Answer: |
+    with ds:
+        ds.create_tensor('number')
+  Hint: Check the syntax for errors.
+
+- Category: code
+  Prompt: |
+    Similarly for the second dataset type
+
+    with ds2:
+        ds2.create_tensor('number')
+  Answer: |
+    with ds2:
+        ds2.create_tensor('number')
+  Hint: Check the syntax for errors.
+
+- Category: text
+  Prompt: "Now we have two empty Datasets with a single number tensor in each.\nWe do not need to specify what type of datatype the tensor will store because Hub can infer it from the data once we store it."
+
+- Category: code
+  Prompt: |
+    Our next step is to populate the first Dataset. For that, we run a small loop as follows. Type the following code:
+
+    with ds:
+        for i in range(1, 6):
+            ds.number.append(i)
+  Answer: |
+    with ds:
+        for i in range(1, 6):
+            ds.number.append(i)
+  Hint: Check the syntax for errors.
+
+- Category: text
+  Prompt: "Now one of our two Datasets is populated.\nWe will be using parallel computation to transform the data and use the transformed data to populate the other one."
+
+- Category: text
+  Prompt: "So now we can proceed to write the compute function, but before that there is a question."
+
+- Category: mcq
+  Prompt: How many parameters are default parameters in every compute function?
+  Options:
+    - 2
+    - 1
+    - 0
+    - None of the above
+  Answer: 2
+  Hints:
+    - That's correct!
+    - There are actually 2.
+    - There are actually 2.
+    - There are actually 2.
+
+- Category: text
+  Prompt: |
+    So if you remember the two default parameters are:
+       1. A single element of the iterable
+       2. A dataset sample
+
+- Category: code
+  Prompt: |
+    Armed with that knowledge let us write the compute function. Type the following code:
+
+    @hub.compute
+    def square(number, sample_out):
+        new_number = number ** 2
+        sample_out.number.append(new_number)
+        return sample_out
+  Answer: |
+    @hub.compute
+    def square(number, sample_out):
+        new_number = number ** 2
+        sample_out.number.append(new_number)
+        return sample_out
+  Hint: Check the syntax for errors.
+
+- Category: text
+  Prompt: "That should do the trick. Since we have the compute function ready,\nwe must now use it to populate the second dataset."
+
+- Category: mcq
+  Prompt: Where do we pass the arguments while calling the compute function?
+  Options:
+    - In the compute function call which we just defined.
+    - In the eval method of the compute function.
+    - We do not pass the params, Hub infers it automatically.
+    - None of the above
+  Answer: In the eval method of the compute function.
+  Hints:
+    - If you remember the compute function only takes custom params.
+    - That's correct!
+    - The user must pass these parameters.
+    - If you remember, we pass it to the eval function.
+
+- Category: code
+  Prompt: |
+    Now we have all the pieces ready, it’s time to connect the dots and populate the second dataset. Type the following code to do so.
+
+    square().eval(ds.number.numpy(), ds2, num_workers=2)
+  Answer: square().eval(ds.number.numpy(), ds2, num_workers=2)
+  Hint: Check the syntax for errors.
+
+- Category: mcq
+  Prompt: Why are we calling the numpy function in the above line?
+  Options:
+    - Because of lazy computation. We need a list (iterable) hence we must call the numpy() function. Otherwise, we get a Tensor object.
+    - Because this is the syntactically correct way.
+    - Because the tensor was made using numpy.
+  Answer: Because of lazy computation. We need a list (iterable) hence we must call the numpy() function. Otherwise, we get a Tensor object.
+  Hints:
+    - That's correct!
+    - Would we get the values without using numpy() ?
+    - Would we get the values without using numpy() ?
+
+- Category: text
+  Prompt: "Notice that while passing the arguments,\nwe pass the entire iterable list instead of a single element."
+
+- Category: code
+  Prompt: |
+    Now both the Datasets have been populated. We can view them to verify that the compute function worked properly.
+    Type `ds.number.numpy()`
+  Answer: ds.number.numpy()
+  Hint: Check the syntax for errors.
+
+- Category: code
+  Prompt: For the other Dataset type `ds2.number.numpy()`
+  Answer: ds2.number.numpy()
+  Hint: Check the syntax for errors.
+
+- Category: code
+  Prompt: Now to free up space we should delete the datasets. Type 'ds.delete()'
+  Answer: ds.delete()
+  Hint: Check the syntax for errors.
+
+- Category: code
+  Prompt: Now for the other one. Type 'ds2.delete()'
+  Answer: ds2.delete()
+  Hint: Check the syntax for errors.
+
+- Category: text
+  Prompt: "Congratulations! You now know how to transform datasets using parallel computation this chapter ends here, see you soon!"

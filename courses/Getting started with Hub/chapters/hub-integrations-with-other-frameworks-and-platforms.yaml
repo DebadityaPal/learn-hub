@@ -16,8 +16,8 @@
   Hints: "Do you have Hub installed?"
 
 - Category: code
-  Prompt: "We shall use the animals for this tutorial.\nLoad it by typing `ds = hub.dataset('./animals_dataset')`"
-  Answer: ds = hub.dataset('./animals_dataset')
+  Prompt: "We shall use the famous MNIST dataset for this tutorial.\nLoad it by typing `ds = hub.dataset('hub://activeloop/mnist-train')`"
+  Answer: ds = hub.dataset('hub://activeloop/mnist-train')
   Hints: "Check the URL for spelling errors."
 
 - Category: code

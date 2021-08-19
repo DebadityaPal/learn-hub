@@ -1,0 +1,6 @@
+- Course: Parallel Computation with Hub
+  Description: Learn how to speed things up with parallel computation.
+  Chapters:
+    - What is Parallel Computing?
+    - Using Parallel Computing to transform data
+  Author: Debaditya Pal
