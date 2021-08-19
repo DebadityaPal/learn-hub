@@ -51,3 +51,15 @@ A list of all the available courses can be acquired by running
 python learn list
 ```
 Linux users can remove the `python` part from both the commands.
+
+
+# GSoC Checklist
+ - [x] Make a Basic YAML parser to read course files.
+ - [x] Make a general course engine to provide content on the terminal.
+ - [x] Make General Snippet class which will be extended later.
+ - [x] Make Text Snippet Class
+ - [x] Make MCQ Snippet Class
+ - [x] Make Code Snippet Class
+ - [x] Add Automated Documentation Pipeline
+ - [x] Add Courses in the library after incorporating team feedback.
+ - [x] Stretch: Add colors to make courses visually appealing.
