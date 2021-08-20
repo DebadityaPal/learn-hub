@@ -37,18 +37,4 @@
   Prompt: "Similarly we can run `dataset = ds.tensorflow()` to convert the Hub Dataset to a tf.data.Dataset format."
 
 - Category: text
-  Prompt: "Now we discuss another possibility.\nWhat if a dataset is stored in a different platform and the user wants to convert that into a Hub Dataset."
-
-- Category: text
-  Prompt: "So for now Hub allows users to directly convert Kaggle datasets to Hub Datasets."
-
-- Category: text
-  Prompt: "We shall test this out on the dataset mentioned at 'https://www.kaggle.com/zalando-research/fashionmnist'.\nThe way we refer to this dataset is via its tag, which is 'zalando-research/fashionmnist'"
-
-- Category: code
-  Prompt: "In order to fetch this dataset in a Hub format we must run:\n`ds = hub.ingest_kaggle('zalando-research/fashionmnist')`"
-  Answer: ds = hub.ingest_kaggle('zalando-research/fashionmnist')
-  Hints: "Check for syntax errors."
-
-- Category: text
   Prompt: "That's it for this chapter! The awesome devs at Hub are adding new features every day, so be sure to check out this amazing package."
