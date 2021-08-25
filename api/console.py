@@ -6,6 +6,14 @@ import sys
 
 class Console(code.InteractiveConsole):
     def compile_ast(self, src, filename="<input>", symbol="single"):
+        """
+        Takes code as string and parses it into an AST.
+
+        Parameters
+        ----------
+        src: str
+            The source code, in string format, to be parsed into an AST.
+        """
         compiled_command = code.compile_command(src, filename, symbol)
         if compiled_command:
             self.latest_parsed = ast.parse(src, filename, symbol)
@@ -14,6 +22,7 @@ class Console(code.InteractiveConsole):
             return compile(self.latest_parsed, filename, symbol)
 
     def interact(self, banner=""):
+        """Launches the interactive subshell and yields code provided by user."""
         self.compile = self.compile_ast
         try:
             sys.ps1

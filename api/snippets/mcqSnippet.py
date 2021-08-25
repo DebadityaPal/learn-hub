@@ -9,6 +9,7 @@ class mcqSnippet(NonConsoleSnippet):
     _requiredFields_ = ["options", "answer"]
 
     def get_response(self, data={}):
+        """Fetches an option from the user and checks if it is a valud option."""
         self.option_indexes = list(range(len(self.options)))
         random.shuffle(self.option_indexes)
         while True:

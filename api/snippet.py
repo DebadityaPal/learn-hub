@@ -156,12 +156,23 @@ class ConsoleSnippet(Snippet):
             self.yaml_hook()
 
     def new_console(self, local_variables):
+        """
+        Initializes a new console with a set of local variables.
+
+        Parameters
+        ----------
+        local_variables: dict
+            The dictionary of local varaibles with their values to be created.
+        """
         self._recorder = Recorder()
         new_locals = local_variables.copy()
         new_locals["__ast_parser__"] = self._recorder
         return Console(new_locals)
 
     def serve(self, data={}):
+        """
+        Serves the Snippet by printing the prompt, taking user input and testing it.
+        """
         self.print_prompt()
         while True:
             if "state" not in data:
