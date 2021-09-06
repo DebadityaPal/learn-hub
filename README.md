@@ -46,6 +46,10 @@ If you want to run a course you simply need to run the following command on the 
 ```
 python learn run courses/<course_name>
 ```
+for example
+```
+python learn run "courses/Getting started with Hub"
+```
 A list of all the available courses can be acquired by running
 ```
 python learn list
