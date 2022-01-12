@@ -42,17 +42,19 @@ git pull origin main
 ```
 
 # Running a Course
+**Note:** You need to use Python 3.x
+
 If you want to run a course you simply need to run the following command on the console.
 ```
-python learn run courses/<course_name>
+python3 learn run courses/<course_name>
 ```
 for example
 ```
-python learn run "courses/Getting started with Hub"
+python3 learn run "courses/Getting started with Hub"
 ```
 A list of all the available courses can be acquired by running
 ```
-python learn list
+python3 learn list
 ```
 Linux users can remove the `python` part from both the commands.
 
